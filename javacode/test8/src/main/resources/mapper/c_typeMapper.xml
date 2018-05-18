@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.dao.c_typeDao">
+	    <resultMap type="c_type" id="typeMap">
+		<id column="typeId" property="typeId" />
+		<result column="typeName" property="typeName" />
+		<association property="uptype" column="uptypeId" select="com.test.dao.uptypeDao.findById">      
+        </association>
+	</resultMap>
+	   <select id="findById" parameterType="int" resultMap="typeMap">
+	     select b.* ,t.* from c_type b inner join uptype t on  b.uptypeId=t.uptypeId where b.typeId = #{typeId}
+	</select>
+	   
+	<select id="findAll"  resultMap="typeMap">
+	     select * from c_type inner join uptype on c_type.uptypeId=uptype.uptypeId
+	</select>
+</mapper>

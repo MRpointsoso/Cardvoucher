@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.dao.uptypeDao">
+	    
+	   <select id="findById" parameterType="int" resultType="com.test.model.uptype">
+	     select * from uptype where uptypeId = #{uptypeId}
+	</select>
+	   
+	<select id="findAll"  resultType="com.test.model.uptype">
+	     select * from uptype
+	</select>
+</mapper>

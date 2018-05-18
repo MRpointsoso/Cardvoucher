@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.dao.CardDao">
+	<insert id="addCard" parameterType="com.test.model.Card">
+		insert into
+		card(typeId,uId,pId,effectiveTime,InvalidTime,currentPrice,originalPrice,cardname,cardNote,attachmentId,ifreal,adress,cstatus)
+		values(#{typeId},#{uId},#{pId},#{effectiveTime},#{InvalidTime},#{currentPrice},#{cardname},#{cardNote},#{attachmentId},#{ifreal},#{adress},#{cstatus})
+	</insert>
+
+<select id="getByupType" parameterType="int" resultMap="CardMap">
+		select c.* from card c inner join c_type b on c.typeId = b.typeId inner join uptype t on  
+b.uptypeId=t.uptypeId where t.uptypeId = #{uptypeId} order by cId DESC LIMIT 10
+	</select>
+	<update id="updateCard" parameterType="com.test.model.Card">
+		update card set cardname =
+		#{cardname},
+		typeId = #{typeId},
+		pId=#{pId},
+		cardNote = #{cardNote},
+		adress = #{adress},
+		cstatus = #{cstatus},
+		effectiveTime = #{effectiveTime},
+		InvalidTime =#{InvalidTime},
+		currentPrice=#{currentPrice},
+		originalPrice = #{originalPrice},
+		typeId = #{typeId},
+		where cId = #{cId}
+	</update>
+
+	<delete id="deleteCard" parameterType="String">
+		delete from card where Cardname = #{Cardname}
+	</delete>
+
+	<resultMap type="Card" id="CardMap">
+		<id column="cId" property="cId" />
+		<result column="cardname" property="cardname" />
+		<result column="cardNote" property="cardNote" />  
+		<result column="effectiveTime" property="effectiveTime" jdbcType="VARCHAR" />
+		<result column="InvalidTime" property="InvalidTime" jdbcType="VARCHAR" />
+		<result column="currentPrice" property="currentPrice" />
+		<result column="originalPrice" property="originalPrice" />
+		<result column="adress" property="adress" />
+		<result column="cstatus" property="cstatus" />
+		<association property="c_type" column="typeId" select="com.test.dao.c_typeDao.findById">      
+        </association>
+	</resultMap>
+
+	<select id="findAll" resultMap="CardMap">
+		select * from card
+	</select>
+
+
+	<select id="findByID" parameterType="int" resultMap="CardMap">
+		select *
+		from card where cId = #{cId}
+	</select>
+	<select id="findByName" parameterType="String" resultMap="CardMap">
+		select *
+		from card where cardname = #{cardname}
+	</select>
+
+</mapper>
