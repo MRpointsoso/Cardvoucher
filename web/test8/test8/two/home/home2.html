@@ -1,0 +1,826 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>首页</title>
+
+    <link href="../AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
+    <link href="../AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
+
+    <link href="../basic/css/demo.css" rel="stylesheet" type="text/css" />
+
+    <link href="../css/hmstyle.css" rel="stylesheet" type="text/css" />
+    <script src="../AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
+    <script src="../AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>
+    <style>
+        .line-th-span {
+            text-decoration: line-through;
+        }
+
+        .new-price-span {
+            font-size: 16px;
+            color: #FB4A48
+        }
+
+        .outer-con {
+            z-index: 100 !important;
+        }
+
+        .message-r li {
+            float: left;
+        }
+
+        .text-two {
+            background: none!important;
+            color: black!important;
+        }
+
+        .hidden {
+            display: none;
+        }
+        .aspan a:hover{
+            color: red;
+        }
+        .ml-22{
+            cursor:default;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!--vue app1-->
+    <div class="hmtop" id="app1">
+        <!--顶部导航条 -->
+        <div class="am-container header">
+            <ul class="message-l">
+                <div class="topMessage hidden" v-show="userId!=null">
+                    <div class="menu-hd">
+                        欢迎！ <a href="../person/information.html" style="color: #F54400">{{userName}}</a>
+                    </div>
+                </div>
+                <div class="topMessage hidden" v-show="userId==null">
+                    <div class="menu-hd">
+                        欢迎！请 <a href="../home/login.html" style="color: #F54400">登录</a>
+                    </div>
+                </div>
+            </ul>
+            <ul class="message-r">
+                <li class="topMessage home">
+                    <div class="menu-hd">
+                        <a href="#" target="_top" class="h">商城首页</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="topMessage my-shangcheng">
+                        <div class="menu-hd MyShangcheng"><a href="../person/information.html" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="topMessage favorite">
+                        <div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="nav white">
+        <div class="search-bar pr">
+            <a name="index_none_header_sysc" href="#"></a>
+            <form>
+                <input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off"> <input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
+            </form>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+    </div>
+    <b class="line"></b>
+    <div class="shopNav">
+        <div class="slideall" style="height: auto;">
+
+            <div class="long-title">
+                <span class="all-goods">全部分类</span>
+            </div>
+            <div class="nav-cont">
+                <div class="nav-extra">
+                    <i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>转手卡券
+                    <i class="am-icon-angle-right" style="padding-left: 10px;"></i>
+                </div>
+            </div>
+
+            <div class="bannerTwo">
+                <!--轮播 -->
+                <div class="am-slider am-slider-default scoll" data-am-flexslider id="demo-slider-0">
+                    <ul class="am-slides">
+                        <li class="banner1"><a href="introduction.html"><img
+								src="../images/top2.png" /></a></li>
+                        <li class="banner2"><a><img src="../images/top1.png" /></a></li>
+                        <li class="banner3"><a><img src="../images/top2.png" /></a></li>
+                        <li class="banner4"><a><img src="../images/ad8.jpg" /></a></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <!--侧边导航 -->
+            <div id="nav" class="navfull" style="position: static;">
+                <div class="area clearfix">
+                    <div class="category-content" id="guide_2">
+
+                        <div class="category" style="box-shadow: none; margin-top: 2px;">
+                            <ul class="category-list navTwo" id="js_climit_li">
+
+
+                                <li>
+                                    <div class="category-info">
+                                        <h3 class="category-name b-category-name">
+                                            <i><img src="../images/cake.png"></i><a class="ml-22" title="点心">餐饮美食</a>
+                                        </h3>
+                                        <em>&gt;</em>
+                                    </div>
+                                    <div class="menu-item menu-in top">
+                                        <div class="area-in">
+                                            <div class="area-bg">
+                                                <div class="menu-srot">
+                                                    <div class="sort-side">
+                                                        <dl class="dl-sort">
+                                                            <dt>
+																<span>餐饮美食</span>
+															</dt>
+                                                            <dd v-for="typeitem in typelist" v-if="typeitem.uptypeName=='餐饮美食'">
+                                                                <a v-bind:title="typeitem.typeName" href="#"><span>{{typeitem.typeName}}</span></a>
+                                                            </dd>
+                                                        </dl>
+
+
+                                                    </div>
+                                                    <div class="brand-side">
+                                                        <dl class="dl-sort">
+                                                            <dt>
+																<span>实力商家</span>
+															</dt>
+                                                            <dd v-for="publisheritem in publisherlist" v-if="publisheritem.uptypeName=='餐饮美食'">
+                                                                <a rel="nofollow" v-bind:title="publisheritem.pName" target="_blank" href="#" rel="nofollow"><span class="red">{{publisheritem.pName}}</span></a>
+                                                            </dd>
+
+                                                        </dl>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> <b class="arrow"></b>
+                                </li>
+
+                                <li>
+                                    <div class="category-info">
+                                        <h3 class="category-name b-category-name">
+                                            <i><img src="../images/xiaofei.png" /></i><a class="ml-22" title="消费卡">消费卡</a>
+                                        </h3>
+                                        <em>&gt;</em>
+                                    </div>
+                                    <div class="menu-item menu-in top">
+                                        <div class="area-in">
+                                            <div class="area-bg">
+                                                <div class="menu-srot">
+                                                    <div class="sort-side">
+                                                        <dl class="dl-sort">
+                                                            <dt>
+																<span>消费卡</span>
+															</dt>
+                                                            <dd v-for="typeitem in typelist" v-if="typeitem.uptypeName=='消费卡'">
+                                                                <a v-bind:title="typeitem.typeName" href="#"><span>{{typeitem.typeName}}</span></a>
+                                                            </dd>
+                                                        </dl>
+                                                    </div>
+                                                    <div class="brand-side">
+                                                        <dl class="dl-sort">
+                                                            <dt>
+																<span>实力商家</span>
+															</dt>
+                                                            <dd v-for="publisheritem in publisherlist" v-if="publisheritem.uptypeName=='消费卡'">
+                                                                <a rel="nofollow" v-bind:title="publisheritem.pName" target="_blank" href="#" rel="nofollow"><span class="red">{{publisheritem.pName}}</span></a>
+                                                            </dd>
+
+                                                        </dl>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> <b class="arrow"></b>
+                                </li>
+                                <li>
+                                    <div class="category-info">
+                                        <h3 class="category-name b-category-name">
+                                            <i><img src="../images/meat.png"></i><a class="ml-22" title="购物提货券">购物提货券</a>
+                                        </h3>
+                                        <em>&gt;</em>
+                                    </div>
+                                    <div class="menu-item menu-in top">
+                                        <div class="area-in">
+                                            <div class="area-bg">
+                                                <div class="menu-srot">
+                                                    <div class="sort-side">
+                                                        <dl class="dl-sort">
+                                                            <dt>
+																<span>购物提货券</span>
+															</dt>
+                                                            <dd v-for="typeitem in typelist" v-if="typeitem.uptypeName=='购物提货券'">
+                                                                <a v-bind:title="typeitem.typeName" href="#"><span>{{typeitem.typeName}}</span></a>
+                                                            </dd>
+                                                        </dl>
+                                                    </div>
+                                                    <div class="brand-side">
+                                                        <dl class="dl-sort">
+                                                            <dt>
+																<span>实力商家</span>
+															</dt>
+                                                            <dd v-for="publisheritem in publisherlist" v-if="publisheritem.uptypeName=='购物提货券'">
+                                                                <a rel="nofollow" v-bind:title="publisheritem.pName" target="_blank" href="#" rel="nofollow"><span class="red">{{publisheritem.pName}}</span></a>
+                                                            </dd>
+
+                                                        </dl>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> <b class="arrow"></b>
+                                </li>
+                                <li>
+                                    <div class="category-info">
+                                        <h3 class="category-name b-category-name">
+                                            <i><img src="../images/ticket.png"></i><a class="ml-22" title="演出票务">演出票务</a>
+                                        </h3>
+                                        <em>&gt;</em>
+                                    </div>
+                                    <div class="menu-item menu-in top">
+                                        <div class="area-in">
+                                            <div class="area-bg">
+                                                <div class="menu-srot">
+                                                    <div class="sort-side">
+                                                        <dl class="dl-sort">
+                                                            <dt>
+																<span>演出票务</span>
+															</dt>
+                                                            <dd v-for="typeitem in typelist" v-if="typeitem.uptypeName=='演出票务'">
+                                                                <a v-bind:title="typeitem.typeName" href="#"><span>{{typeitem.typeName}}</span></a>
+                                                            </dd>
+                                                        </dl>
+                                                    </div>
+                                                    <div class="brand-side">
+                                                        <dl class="dl-sort">
+                                                            <dt>
+																<span>实力商家</span>
+															</dt>
+                                                            <dd v-for="publisheritem in publisherlist" v-if="publisheritem.uptypeName=='演出票务'">
+                                                                <a rel="nofollow" v-bind:title="publisheritem.pName" target="_blank" href="#" rel="nofollow"><span class="red">{{publisheritem.pName}}</span></a>
+                                                            </dd>
+
+                                                        </dl>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> <b class="arrow"></b>
+                                </li>
+
+
+                                <li>
+                                    <div class="category-info">
+                                        <h3 class="category-name b-category-name">
+                                            <i><img src="../images/xiuxian.png"></i><a class="ml-22" title="休闲娱乐">休闲娱乐</a>
+                                        </h3>
+                                        <em>&gt;</em>
+                                    </div>
+                                    <div class="menu-item menu-in top">
+                                        <div class="area-in">
+                                            <div class="area-bg">
+                                                <div class="menu-srot">
+                                                    <div class="sort-side">
+                                                        <dl class="dl-sort">
+                                                            <dt>
+																<span>休闲娱乐</span>
+															</dt>
+                                                            <dd v-for="typeitem in typelist" v-if="typeitem.uptypeName=='休闲娱乐'">
+                                                                <a v-bind:title="typeitem.typeName" href="#"><span>{{typeitem.typeName}}</span></a>
+                                                            </dd>
+                                                        </dl>
+                                                    </div>
+                                                    <div class="brand-side">
+                                                        <!--
+                                                        <dl class="dl-sort">
+                                                            <dt>
+																<span>实力商家</span>
+															</dt>
+                                                            <dd v-for="publisheritem in publisherlist" v-if="publisheritem.uptypeName=='休闲娱乐'">
+                                                                <a rel="nofollow" v-bind:title="publisheritem.pName" target="_blank" href="#" rel="nofollow"><span class="red">{{publisheritem.pName}}</span></a>
+                                                            </dd>
+
+                                                        </dl>
+-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> <b class="arrow"></b>
+                                </li>
+
+                                <li>
+                                    <div class="category-info">
+                                        <h3 class="category-name b-category-name">
+                                            <i><img src="../images/youxi.png"></i><a class="ml-22" title="网络游戏">网络游戏</a>
+                                        </h3>
+                                        <em>&gt;</em>
+                                    </div>
+                                    <div class="menu-item menu-in top">
+                                        <div class="area-in">
+                                            <div class="area-bg">
+                                                <div class="menu-srot">
+                                                    <div class="sort-side">
+                                                        <dl class="dl-sort">
+                                                            <dt>
+																<span>网络游戏</span>
+															</dt>
+                                                            <dd v-for="typeitem in typelist" v-if="typeitem.uptypeName=='网络游戏'">
+                                                                <a v-bind:title="typeitem.typeName" href="#"><span>{{typeitem.typeName}}</span></a>
+                                                            </dd>
+                                                        </dl>
+                                                    </div>
+                                                    <div class="brand-side">
+                                                        <dl class="dl-sort">
+                                                            <dt>
+																<span>实力商家</span>
+															</dt>
+                                                            <dd v-for="publisheritem in publisherlist" v-if="publisheritem.uptypeName=='网络游戏'">
+                                                                <a rel="nofollow" v-bind:title="publisheritem.pName" target="_blank" href="#" rel="nofollow"><span class="red">{{publisheritem.pName}}</span></a>
+                                                            </dd>
+
+                                                        </dl>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> <b class="arrow"></b>
+                                </li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--导航 -->
+
+
+            <div class="clear"></div>
+
+            <div class="marqueenTwo">
+
+                <img src="../images/woerma.png" alt="" style="position: relative; top: 10px; cursor: pointer">
+            </div>
+            <div class="clear"></div>
+
+        </div>
+    </div>
+    <div class="shopMainbg" id="cardmap">
+        <div class="shopMain" id="shopmain">
+
+            <div class="clear "></div>
+            <div class="f1">
+                <!--甜点-->
+
+                <div class="am-container ">
+                    <div class="shopTitle ">
+                        <h4 class="floor-title">餐饮美食</h4>
+                        <div class="today-brands " style="right: 0px; top: 13px;">
+                           <span class="aspan"  v-if="publisheritem.uptypeName=='餐饮美食'" v-for="publisheritem in publisherlist"><a href="# ">{{publisheritem.pName}}</a>|</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="am-g am-g-fixed floodSix ">
+
+                    <li>
+                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-4 text-five">
+                            <div class="boxLi"></div>
+                            <div class="outer-con ">
+                                <div class="title ">【上海】 糕点</div>
+                                <div class="sub-title ">
+                                    <span class="line-th-span">¥60</span><br> <span class="new-price-span">¥40</span>
+                                </div>
+
+                            </div>
+                            <a href="# "><img src="../images/cake2.jpg" /></a>
+                        </div>
+                    </li>
+                    <div class="text-two big am-u-sm-4 am-u-md-5 am-u-lg-4 text-five">
+                        <div class="boxLi"></div>
+                        <div class="outer-con ">
+                            <div class="title" style="color: #333">【上海】 糕点</div>
+                            <div class="sub-title ">
+                                <span class="line-th-span" style="color: #333">¥60</span><br> <span class="new-price-span">¥40</span>
+                            </div>
+
+                        </div>
+                        <a href="# "><img src="../images/cake2.jpg" /></a>
+                    </div>
+
+                    <li>
+                        <div class="am-u-md-2 am-u-lg-2 text-three">
+                            <div class="boxLi"></div>
+                            <div class="outer-con ">
+                                <div class="title ">【全国通用】冰淇淋券</div>
+                                <div class="sub-title ">
+                                    <span class="line-th-span">¥218</span><br> <span class="new-price-span">¥145</span>
+                                </div>
+
+                            </div>
+                            <a href="# "><img src="../images/hgdse.jpg" /></a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="am-u-md-2 am-u-lg-2 text-three sug">
+                            <div class="boxLi"></div>
+                            <div class="outer-con ">
+                                <div class="title ">【全国通用】 餐厅券</div>
+                                <div class="sub-title ">
+                                    <span class="line-th-span">¥59</span><br> <span class="new-price-span">¥40</span>
+                                </div>
+
+                            </div>
+                            <a href="# "><img src="../images/mixian.jpg" /></a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-4 text-five">
+                            <div class="boxLi"></div>
+                            <div class="outer-con ">
+                                <div class="title ">【全国通用】星巴克优惠券</div>
+                                <div class="sub-title ">
+                                    <span class="line-th-span">¥90</span><br> <span class="new-price-span">¥60</span>
+                                </div>
+
+                            </div>
+                            <a href="# "><img src="../images/xbk2.jpg" /></a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="am-u-sm-4 am-u-md-2 am-u-lg-2 text-six">
+                            <div class="boxLi"></div>
+                            <div class="outer-con ">
+                                <div class="title ">【全国通用】星巴克优惠券</div>
+                                <div class="sub-title ">
+                                    <span class="line-th-span">¥90</span><br> <span class="new-price-span">¥60</span>
+                                </div>
+
+                            </div>
+                            <a href="# "><img src="../images/xbk2.jpg" /></a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="am-u-sm-4 am-u-md-2 am-u-lg-4 text-six">
+                            <div class="boxLi"></div>
+                            <div class="outer-con ">
+                                <div class="title ">【全国通用】星巴克优惠券</div>
+                                <div class="sub-title ">
+                                    <span class="line-th-span">¥90</span><br> <span class="new-price-span">¥60</span>
+                                </div>
+
+                            </div>
+                            <a href="# "><img src="../images/xbk2.jpg" /></a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="clear "></div>
+            </div>
+            <div class="f2">
+
+
+            </div>
+
+            <div class="f3">
+                <!--甜点-->
+
+            </div>
+            <div class="f4">
+
+                <!--坚果-->
+
+            </div>
+
+            <div class="f5">
+                <!--甜点-->
+
+            </div>
+            <div class="f6">
+
+                <!--坚果-->
+
+            </div>
+
+            <div class="f7">
+                <!--甜点-->
+
+            </div>
+
+
+
+
+
+            <div class="footer ">
+
+            </div>
+        </div>
+    </div>
+
+
+    <!--引导 -->
+    <div class="navCir">
+        <li class="active"><a href="home2.html"><i
+				class="am-icon-home "></i>首页</a></li>
+        <li><a href="sort.html"><i class="am-icon-list"></i>分类</a></li>
+        <!--        <li><a href="shopcart.html"><i class="am-icon-shopping-basket"></i>购物车</a></li>-->
+        <li><a href="../person/index.html"><i class="am-icon-user"></i>我的</a></li>
+    </div>
+    <!--菜单 -->
+    <div class=tip>
+        <div id="sidebar">
+            <div id="wrap">
+                <div id="prof" class="item ">
+                    <a href="# "> <span class="setting "></span>
+					</a>
+                    <div class="ibar_login_box status_login ">
+                        <div class="avatar_box ">
+                            <p class="avatar_imgbox ">
+                                <img src="../images/no-img_mid_.jpg " />
+                            </p>
+                            <ul class="user_info ">
+                                <li>用户名：sl1903</li>
+                                <li>级&nbsp;别：普通会员</li>
+                            </ul>
+                        </div>
+                        <div class="login_btnbox ">
+                            <a href="# " class="login_order ">我的订单</a> <a href="# " class="login_favorite ">我的收藏</a>
+                        </div>
+                        <i class="icon_arrow_white "></i>
+                    </div>
+
+                </div>
+                <div id="asset " class="item ">
+                    <a href="# "> <span class="view "></span>
+					</a>
+                    <div class="mp_tooltip ">
+                        我的卡券 <i class="icon_arrow_right_black "></i>
+                    </div>
+                </div>
+
+
+                <div id="brand " class="item ">
+                    <a href="#"> <span class="wdsc "><img
+							src="../images/wdsc.png " /></span>
+					</a>
+                    <div class="mp_tooltip ">
+                        我的收藏 <i class="icon_arrow_right_black "></i>
+                    </div>
+                </div>
+                <div class="quick_toggle ">
+                    <li class="qtitem "><a href="# "><span class="kfzx "></span></a>
+                        <div class="mp_tooltip ">
+                            客服中心<i class="icon_arrow_right_black "></i>
+                        </div>
+                    </li>
+                    <!--二维码 -->
+                    <li class="qtitem "><a href="#none "><span
+							class="mpbtn_qrcode "></span></a>
+                        <div class="mp_qrcode " style="display: none;">
+                            <img src="../images/weixin_code_145.png " /><i class="icon_arrow_white "></i>
+                        </div>
+                    </li>
+                    <li class="qtitem "><a href="#top " class="return_top "><span
+							class="top "></span></a></li>
+                </div>
+
+                <!--回到顶部 -->
+                <div id="quick_links_pop " class="quick_links_pop hide "></div>
+
+            </div>
+
+        </div>
+        <div id="prof-content " class="nav-content ">
+            <div class="nav-con-close ">
+                <i class="am-icon-angle-right am-icon-fw "></i>
+            </div>
+            <div>我</div>
+        </div>
+        <div id="asset-content " class="nav-content ">
+            <div class="nav-con-close ">
+                <i class="am-icon-angle-right am-icon-fw "></i>
+            </div>
+            <div>资产</div>
+
+            <div class="ia-head-list ">
+                <a href="# " target="_blank " class="pl ">
+                    <div class="num ">0</div>
+                    <div class="text ">优惠券</div>
+                </a>
+                <a href="# " target="_blank " class="pl ">
+                    <div class="num ">0</div>
+                    <div class="text ">红包</div>
+                </a>
+                <a href="# " target="_blank " class="pl money ">
+                    <div class="num ">￥0</div>
+                    <div class="text ">余额</div>
+                </a>
+            </div>
+
+        </div>
+        <div id="foot-content " class="nav-content ">
+            <div class="nav-con-close ">
+                <i class="am-icon-angle-right am-icon-fw "></i>
+            </div>
+            <div>足迹</div>
+        </div>
+        <div id="brand-content " class="nav-content ">
+            <div class="nav-con-close ">
+                <i class="am-icon-angle-right am-icon-fw "></i>
+            </div>
+            <div>收藏</div>
+        </div>
+        <div id="broadcast-content " class="nav-content ">
+            <div class="nav-con-close ">
+                <i class="am-icon-angle-right am-icon-fw "></i>
+            </div>
+            <div>充值</div>
+        </div>
+    </div>
+    </div>
+    <script type="text/javascript " src="../basic/js/quick_links.js "></script>
+    <script src="../basic/js/jquery-1.9.min.js"></script>
+    <script type="text/javascript" src="../../js/json-driver.js"></script>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+    <script>
+        $(function() {
+            new Vue({
+                el: '#app1',
+                data: {
+                    userName: sessionStorage.getItem("userName"),
+                    userId: sessionStorage.getItem("userId"),
+                },
+                created: function() {
+                    $(".hidden").removeClass("hidden");
+
+                },
+                mounted: function() {}
+            })
+            var vm = new Vue({
+                el: '#nav',
+                data: {
+                    userName: sessionStorage.getItem("userName"),
+                    userId: sessionStorage.getItem("userId"),
+//                    cardlist: [],
+                    uptypelist: [],
+                    typelist: [],
+                    publisherlist: []
+                },
+                created: function() {
+                    //处理cardlist
+//                    var cardlisthandle = function(re) {
+//                        vm.cardlist = re;
+//                    }
+                    //处理一级type
+                    var uptypelisthandle = function(re) {
+                        if (re.length > 0) {
+                            vm.uptypelist = re;
+                        } else {
+                            return;
+                        }
+                    }
+                    //typelist
+                    var typelisthandle = function(re) {
+                        if (re.length > 0) {
+                            vm.typelist = re;
+                        } else {
+                            return;
+                        }
+                    }
+                    var publisherlisthandle = function(re) {
+                        if (re.length > 0) {
+                            vm.publisherlist = re;
+                        } else {
+                            return;
+                        }
+                    }
+                    //发布商
+
+                    //                    $(".hidden").removeClass("hidden");
+                    PostGetJson("findallUptypelist.do", null, uptypelisthandle)
+//                    PostGetJson("getCard.do", null, cardlisthandle)
+                    PostGetJson("findallTypelist.do", null, typelisthandle)
+                    PostGetJson("findallPublisherlist.do", null, publisherlisthandle)
+                    //                    var re = postajax("", "findallTypelist.do")
+
+                },
+                mounted: function() {}
+            })
+
+
+            var vmc = new Vue({
+                el: '#cardmap',
+                data: {
+                    userName: sessionStorage.getItem("userName"),
+                    userId: sessionStorage.getItem("userId"),
+                    cardlist: [],
+                    publisherlist: [],
+                    message: "222"
+                },
+                created: function() {
+                    //处理cardlist
+                    var cardlisthandle = function(re) {
+                        vmc.cardlist = re;
+                    }
+                    var publisherlisthandle = function(re) {
+                        if (re.length > 0) {
+                            vmc.publisherlist = re;
+                        } else {
+                            return;
+                        }
+                    }
+                    PostGetJson("getCard.do", null, cardlisthandle)
+                    PostGetJson("findallPublisherlist.do", null, publisherlisthandle)
+                },
+                mounted: function() {}
+            })
+
+        })
+
+        function postajax(data, url) {
+            $.ajax({
+                type: "post",
+                url: "http://localhost:8080/test8/" + url,
+                cache: false,
+                async: true,
+                dataType: "json",
+                data: data,
+                contentType: "application/json; charset=utf-8",
+                success: function(data) {
+                    alert(re[0].pId);
+                    vm.cardlist.push(re);
+                    alert(vm.cardlist);
+                },
+                error: function(error) {
+                    alert("登录失败");
+                }
+            })
+        }
+
+    </script>
+    <!--导航 -->
+    <script type="text/javascript">
+        (function() {
+            $('.am-slider').flexslider();
+        });
+        $(document)
+            .ready(
+                function() {
+                    $("li")
+                        .hover(
+                            function() {
+                                $(
+                                        ".category-content .category-list li.first .menu-in")
+                                    .css("display",
+                                        "none");
+                                $(
+                                        ".category-content .category-list li.first")
+                                    .removeClass(
+                                        "hover");
+                                $(this).addClass(
+                                    "hover");
+                                $(this)
+                                    .children(
+                                        "div.menu-in")
+                                    .css("display",
+                                        "block")
+                            },
+                            function() {
+                                $(this).removeClass(
+                                    "hover")
+                                $(this).children(
+                                        "div.menu-in")
+                                    .css("display",
+                                        "none")
+                            });
+                })
+
+    </script>
+</body>
+
+</html>

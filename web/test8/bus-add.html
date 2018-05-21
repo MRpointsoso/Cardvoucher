@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>way-add.html</title>
+
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css"
+	href="bootstrap/css/bootstrap.min.css" />
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/json-driver.js"></script>
+<style type="text/css">
+.form-group {
+	width: 300px;
+}
+</style>
+
+<script type="text/javascript">
+
+	function dataHandle(data) {
+		if (data['result'] == "success") {
+			
+			alert("添加成功!");
+		} 
+		else if(data['result']=="failed")
+		{
+			alert("该牌号汽车已存在!");
+		}
+	}
+	function addBus() {
+		//合法性检查
+		if ($("#busNo").val() == "") {
+			alert("请输入客车牌号！");
+			$("#busNo").focus();
+			return false;
+		} 
+		else if($("#busType").val()==""){
+			alert("请选择客车类型！");
+			$("#busType").focus();
+			return false;
+		}
+		else if($("#capacity").val()==""){
+			alert("请输入客车容量！");
+			$("#capacity").focus();
+			return false;
+		}
+		else if($("#state").val()==""){
+			alert("请选择客车当前状态！");
+			$("#state").focus();
+			return false;
+		}
+
+		var params = {};
+		params.busNo = $("#busNo").val();
+		params.busType = $("#busType").val();
+		params.capacity = $("#capacity").val();
+		params.state = $("#state").val();
+		
+		PostGetJson("addBus.do", params, dataHandle);
+
+	};
+
+</script>
+
+</head>
+
+<body>
+	<div style="width:400px;margin:auto;">
+		<div><h3>添加客车</h3></div><br/>
+		<div class="form-group">
+			<i class="fa fa-user fa-lg"></i> <input class="form-control required"
+				type="text" id="busNo" placeholder="车牌号" name="CompanyName"
+				autofocus="autofocus" />
+		</div>
+		<div class="form-group">
+			<i class="fa fa-user fa-lg"></i>
+			<select class="form-control required" id="busType" name="type">
+				<option value="座席高一级">座席高一级</option>
+				<option value="大型座席">大型座席</option>
+				<option value="卧铺高级">卧铺高级</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<i class="fa fa-user fa-lg"></i> <input class="form-control required"
+				type="text" id="capacity" placeholder="客容量" name="CompanyName"
+				autofocus="autofocus" />
+		</div>
+		<div class="form-group">
+			<i class="fa fa-user fa-lg"></i>
+			<select class="form-control required" id="state" name="type">
+				<option value="运客">运客</option>
+				<option value="闲置">闲置</option>
+				<option value="故障">故障</option>
+			</select>
+		</div>
+		<div style="width:200px;margin:auto;">
+			<button type="button" class="btn btn-primary" onclick="addBus()">&emsp;添&emsp;加&emsp;</button>
+		</div>
+	</div>
+</body>
+</html>

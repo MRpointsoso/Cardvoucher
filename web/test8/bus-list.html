@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>way-add.html</title>
+
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css"
+	href="bootstrap/css/bootstrap.min.css" />
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/json-driver.js"></script>
+<script type="text/javascript" src="js/bus-list.js"></script>
+
+
+<script type="text/javascript">
+	window.onload = function() {
+		var pageCount = 1;
+		var currentPage = 1;
+		updatePageList();
+	};
+</script>
+
+</head>
+
+<body>
+	<div style="width: 60%; margin: auto">
+		<div class="box-content">
+			<br />
+			<div class="alert alert-info" style="height:60px;">
+				<div style="width:400px;margin:auto;">
+					<div style="width:45%;float:left;">
+						<label class="control-label" for="selectError">依据：</label>
+						<select id="selectBus" data-rel="chosen">
+							<option value="全部">全部</option>
+							<option value="车牌号">车牌号</option>
+							<option value="客车类型">客车类型</option>
+							<option value="客车容量">客车容量</option>
+							<option value="客车状态">客车状态</option>
+						</select>
+					</div>
+					<div style="width:55%;float:left;">
+						<input type="text" id="searchContent">&nbsp;&nbsp;
+						<button type="button" class="btn btn-xs btn-success"
+							onclick="search()">搜索</button>
+					</div>
+				</div>
+			</div>
+			<br />
+			<div>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>车牌号</th>
+							<th>客车类型</th>
+							<th>车容量</th>
+							<th>状态</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody id="showBody">
+					</tbody>
+				</table>
+			</div>
+			<div style="width:300px;margin:auto;">
+				<nav aria-label="Page navigation">
+					<ul class="pagination" id="pageShow1">
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

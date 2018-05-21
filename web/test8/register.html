@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<link rel="stylesheet" type="text/css"
+	href="bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="css/index.css" />
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/json-driver.js"></script>
+<style>
+.lr_box {
+	background: rgba(0, 191, 255, 0.1);
+	width: 400px;
+	height: 300px;
+	margin: 100px auto;
+}
+
+.lr_text input {
+	width: 215px;
+	border: none;
+	height: 30px;
+	line-height: 32px\9;
+	text-indent: 5px;
+	outline: none;
+}
+
+.lr_text {
+	height: 33px;
+	width: 100%;
+	background: #fff;
+	border: #1E90FF solid 1px;
+	border-radius: 6px;
+}
+
+.btn_lr {
+	width: 100%;
+	height: 33px;
+	background: #00E5EE;
+	border: 0px;
+}
+</style>
+
+<script type="text/javascript">
+
+	function dataHandle(data) {
+		if (data['result'] == "success") {
+			sessionStorage.username = data['name'];
+			sessionStorage.userType = data['type'];
+			sessionStorage.userId = data['id'];
+			sessionStorage.email = data['email'];
+			//alert(sessionStorage.iwork_userType);
+			alert("..."+sessionStorage.userType);
+			location.href = "index.jsp";
+		} 
+		else if(data['result']=="failed")
+		{
+			alert("已有重名用户!");
+			$("#username").val("");
+		}
+	}
+	function register() {
+		//合法性检查
+		if ($("#username").val() == "") {
+			alert("请输入账户名！");
+			$("#username").focus();
+			return false;
+		} 
+		else if($("#password").val()==""||$("#password0").val()==""){
+			alert("请输入密码！");
+			$("#password").focus();
+			return false;
+		}
+		else if($("#password").val()!=$("#password0").val()){
+			alert("两次密码不一样，请重新输入！");
+			$("#password").focus();
+			return false;
+		}
+
+		var params = {};
+		params.username = $("#username").val();
+		params.password = $("#password").val();
+		//dataHandle("temp");
+		
+		PostGetJson("register.do", params, dataHandle);
+
+	};
+	function reset() {
+		$("#username").val("");
+		$("#password").val("");
+		$("#password0").val("");
+	};
+</script>
+
+</head>
+
+<body>
+	<div class="lr_box">
+		<div style="width:255px;margin:auto">
+			<br /> <br />
+			<div class="lr_text">
+				&nbsp; <i class="iconfont">&#xe61d;</i> <input type="text"
+					id="username" placeholder="请输入用户名">
+			</div>
+			<br />
+			<div class="lr_text">
+				&nbsp; <i class="iconfont">&#xe622;</i> <input type="password"
+					id="password" placeholder="请输入密码">
+			</div>
+			<br />
+			<div class="lr_text">
+				&nbsp; <i class="iconfont">&#xe622;</i> <input type="password"
+					id="password0" placeholder="请重新输入密码">
+			</div>
+			<br />
+			<div class="form-group">
+				<input type="button" class="btn btn-success pull-right"
+					id="register_btn" value="注册" onclick="register()" /> 
+				<input type="button" class="btn btn-info pull-left" id="back_btn"
+					value="重新填写" onclick="reset()" />
+			</div>
+
+		</div>
+	</div>
+</body>
+
+</html>

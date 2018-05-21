@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.dao.publisherDao">
+
+	<resultMap type="publisher" id="publisherMap">
+		<id column="pId" property="pId" />
+		<result column="pName" property="pName" />
+		<result column="uptypeName" property="uptypeName" />
+		<result column="uptypeId" property="uptypeId" />
+	</resultMap>
+	   <select id="findByID" parameterType="int" resultMap="publisherMap">
+	     select b.* ,t.* from publisher b inner join uptype t on  b.uptypeId=t.uptypeId where b.typeId = #{typeId}
+	</select>
+	   
+	<select id="findAll"  resultMap="publisherMap">
+	     select * from publisher inner join uptype on publisher.uptypeId=uptype.uptypeId
+	</select>
+</mapper>

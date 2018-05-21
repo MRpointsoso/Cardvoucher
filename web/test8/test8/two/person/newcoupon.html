@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+
+    <title>个人资料</title>
+
+    <link href="../AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
+    <link href="../AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
+    <link href="../css/personal.css" rel="stylesheet" type="text/css">
+    <link href="../css/infstyle.css" rel="stylesheet" type="text/css">
+    <link href="../../css/pikaday.css" rel="stylesheet" type="text/css">
+    <script src="../AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
+    <script src="../AmazeUI-2.4.2/assets/js/amazeui.js"></script>
+</head>
+<style>
+    li.person img {
+        position: relative;
+        right: 7px;
+        top: 6px;
+        height: 20px;
+        width: 20px;
+    }
+
+    .tip {
+        display: inline-block;
+        position: relative;
+    }
+
+    .tip:before,
+    .tip:after {
+        opacity: 1;
+        /*透明度为完全透明*/
+        position: absolute;
+        z-index: 1000;
+        /*设为最上层*/
+        /*鼠标放上元素上时的动画，鼠标放上后效果在.tip-*:hover:before, .tip-*:hover:after中设置;
+            0.3s:规定完成过渡效果需要多少秒或毫秒,ease:规定慢速开始，然后变快，然后慢速结束的过渡效果*/
+        transition: 0.3s ease;
+        -webkit-transition: 0.3s ease;
+        -moz-transition: 0.3s ease;
+    }
+
+    .tip:before {
+        content: '';
+        border: 6px solid transparent;
+    }
+
+    .tip:after {
+        content: attr(data-tip);
+        /*后去要提示的文本*/
+        padding: 5px;
+        white-space: nowrap;
+        /*强制不换行*/
+        background-color: #E5EAEC;
+        color: red;
+    }
+
+    .tip:hover:before,
+    .tip:hover:after {
+        opacity: 1;
+        /*鼠标放上时透明度为完全显示*/
+        z-index: 1000;
+    }
+
+    /*top*/
+
+    .tip-top:before {
+        bottom: 100%;
+        left: 50%;
+        border-top-color: #F5F8FA;
+        /*小三角效果*/
+        margin-left: -3px;
+        margin-bottom: -12px;
+        left: 10px;
+        top: -8px;
+        pointer-events: none;
+    }
+
+    .tip-top:after {
+        bottom: 100%;
+        left: 50%;
+        margin-left: -6px;
+    }
+
+    .tip-top:hover:before {
+        margin-bottom: -6px;
+    }
+
+    .tip-top:hover:after {
+        margin-bottom: 6px;
+    }
+
+    /*bottom*/
+
+    .tip-bottom:before {
+        top: 100%;
+        left: 50%;
+        border-bottom-color: #E5EAEC;
+        margin-left: -3px;
+        margin-top: -9px;
+    }
+
+    .tip-bottom:after {
+        top: 100%;
+        left: 50%;
+        margin-left: -6px;
+        margin-top: 3px;
+        border-radius: 2px;
+    }
+
+    /*
+        .tip-bottom:hover:before {
+            margin-top: -3px;
+        }
+
+        .tip-bottom:hover:after {
+            margin-top: 9px;
+        }
+*/
+
+    /*right*/
+
+    .tip-right:before {
+        top: 50%;
+        left: 100%;
+        border-right-color: rgba(0, 0, 0, 0.8);
+        margin-left: -9px;
+        margin-top: -3px;
+    }
+
+    .tip-right:after {
+        top: 50%;
+        left: 100%;
+        margin-left: 3px;
+        margin-top: -6px;
+    }
+
+    .tip-right:hover:before {
+        margin-left: -3px;
+    }
+
+    .tip-right:hover:after {
+        margin-left: 9px;
+    }
+
+    /*left*/
+
+    .tip-left:before {
+        top: 50%;
+        left: 0%;
+        border-left-color: rgba(0, 0, 0, 0.8);
+        margin-left: 0px;
+        margin-top: -3px;
+    }
+
+    .tip-left:after {
+        top: 50%;
+        right: 100%;
+        margin-right: 0px;
+        margin-top: -6px;
+    }
+
+    .tip-left:hover:before {
+        margin-left: -6px;
+    }
+
+    .tip-left:hover:after {
+        margin-right: 6px;
+    }
+
+</style>
+
+<body>
+
+    <div id="app_nc">
+        <!--标题 -->
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">转手卡券</strong> </div>
+        </div>
+        <hr/>
+        <!--个人信息 -->
+        <div class="info-main">
+            <form class="am-form am-form-horizontal">
+                <div class="am-form-group">
+                    <label for="user-name" class="am-form-label">卡券名</label>
+                    <div class="am-form-content">
+                        <input type="text" id="cardname" placeholder="卡券名" maxlength="50" @change="checkname" v-model="card.cardname">
+                        <div class="tip tip-bottom" style="display: block" v-bind:data-tip="message.masname" v-show="message.masname!=''"></div>
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <label class="am-form-label">使用地</label>
+                    <div class="am-form-content address">
+                        <select data-am-selected>
+                        <option value="a">浙江省</option>
+                        <option value="b" selected>江西省</option>
+                        </select>
+                        <select data-am-selected>
+                        <option value="a">温州市</option>
+                        <option value="b" selected>南昌市</option>
+                        </select>
+                        <select data-am-selected>
+                        <option value="a">瑞安区</option>
+                        <option value="b" selected>青山湖区</option>
+                        </select>
+                    </div>
+
+                </div>
+
+
+                <div class="am-form-group">
+                    <label for="effectiveTime" class="am-form-label">生效日期</label>
+                    <div class="am-form-content">
+                        <input id="effectiveTime" placeholder="生效日期" type="text">
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <label for="InvalidTime" class="am-form-label">失效日期</label>
+                    <div class="am-form-content">
+                        <input id="InvalidTime" placeholder="失效日期" type="text">
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <label for="currentPrice" class="am-form-label">现价</label>
+                    <div class="am-form-content">
+                        <input id="currentPrice" placeholder="现价" type="text">
+
+                    </div>
+                </div>
+                <div class="am-form-group">
+                    <label for="user-email" class="am-form-label">邮件</label>
+                    <div class="am-form-content">
+                        <input id="user-email" placeholder="邮件" type="email">
+
+                    </div>
+                </div>
+                <div class="am-form-group safety">
+                    <label for="user-safety" class="am-form-label">账号安全</label>
+                    <div class="am-form-content safety">
+                        <a href="safety.html">
+
+											<span class="am-icon-angle-right"></span>
+
+										</a>
+
+                    </div>
+                </div>
+                <div class="info-btn">
+                    <div class="am-btn am-btn-danger">保存修改</div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../../js/json-driver.js"></script>
+<script type="text/javascript" src="../../js/vue.js"></script>
+<script type="text/javascript" src="../../js/pikaday.js"></script>
+<script>
+    $(function() {
+        var vm = new Vue({
+            el: '#app_nc',
+            data: {
+                userName: sessionStorage.getItem("userName"),
+                userId: sessionStorage.getItem("userId"),
+                card: {
+                    cId: null,
+                    typeId: 1,
+                    uId: 1,
+                    pId: 1,
+                    effectiveTime: "",
+                    InvalidTime: "",
+                    currentPrice: "",
+                    originalPrice: "",
+                    cardname: "",
+                },
+                message: {
+                    masname: ""
+                }
+            },
+            methods: {
+                checkname: function() {
+                    if (this.card.cardname == "") {
+                        this.message.masname = "卡券名不能为空";
+                    } else {
+                        this.masname = "";
+                    }
+                },
+            },
+            created: function() {
+                $(".hidden").removeClass("hidden");
+
+            },
+            mounted: function() {}
+        })
+        var picker = new Pikaday({
+            field: document.getElementById('effectiveTime'),
+            firstDay: 1,
+            minDate: new Date('2010-01-01'),
+            maxDate: new Date('2020-12-31'),
+            yearRange: [2000, 2020]
+        });
+        var picker = new Pikaday({
+            field: document.getElementById('InvalidTime'),
+            firstDay: 1,
+            minDate: new Date('2010-01-01'),
+            maxDate: new Date('2020-12-31'),
+            yearRange: [2000, 2020]
+        });
+    })
+
+</script>
+
+</html>
