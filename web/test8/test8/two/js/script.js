@@ -114,6 +114,17 @@ $(document).ready(function() {
 
 		}
 	});
+    	$(".select").on("click","dd", function() {
+		if ($(".select-result dd").length > 1) {
+			$(".select-no").hide();
+			$(".eliminateCriteria").show();
+			$(".select-result").show();
+		} else {
+			$(".select-no").show();
+			$(".select-result").hide();
+
+		}
+	});
 
 	$(".eliminateCriteria").live("click", function() {
 		$("#selectA").remove();

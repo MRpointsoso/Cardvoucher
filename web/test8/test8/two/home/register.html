@@ -59,7 +59,7 @@
 										</label>
                             </div>
                             <div class="am-cf">
-                                <input type="submit" name="" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl">
+                                <input type="submit" name="" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl" onclick="re1()">
                             </div>
 
                         </div>
@@ -78,11 +78,11 @@
                                 </div>
                                 <div class="user-pass">
                                     <label for="password"><i class="am-icon-lock"></i></label>
-                                    <input type="password" name="" id="password" placeholder="设置密码">
+                                    <input type="password" name="" id="password2" placeholder="设置密码">
                                 </div>
                                 <div class="user-pass">
                                     <label for="passwordRepeat"><i class="am-icon-lock"></i></label>
-                                    <input type="password" name="" id="passwordRepeat" placeholder="确认密码">
+                                    <input type="password" name="" id="passwordRepeat2" placeholder="确认密码">
                                 </div>
                             </form>
                             <div class="login-links">
@@ -128,6 +128,21 @@
 $(function(){
     $(".am-active").click();
 })
+    var c_user ={
+        email:"",
+        phone:"",
+        password:"",
+        username:"用户名"
+    }
+    var handle = function(){
+        
+    }
+    function re1(){
+        c_user.email=$("#email").val();
+        c_user.password=$("#password").val();
+         PostGetJson("register.do", c_user, handle)
+    }
+  
 
 </script>
 

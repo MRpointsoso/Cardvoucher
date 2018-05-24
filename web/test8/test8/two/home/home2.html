@@ -41,11 +41,13 @@
         .hidden {
             display: none;
         }
-        .aspan a:hover{
+
+        .aspan a:hover {
             color: red;
         }
-        .ml-22{
-            cursor:default;
+
+        .ml-22 {
+            cursor: default;
         }
 
     </style>
@@ -107,10 +109,12 @@
                 <span class="all-goods">全部分类</span>
             </div>
             <div class="nav-cont">
+               <a href="../person/information.html#/newcoupon">
                 <div class="nav-extra">
                     <i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>转手卡券
                     <i class="am-icon-angle-right" style="padding-left: 10px;"></i>
                 </div>
+                </a>
             </div>
 
             <div class="bannerTwo">
@@ -394,19 +398,19 @@
 
             <div class="clear "></div>
             <div class="f1">
-                <!--甜点-->
+                <!--餐饮美食-->
 
                 <div class="am-container ">
                     <div class="shopTitle ">
                         <h4 class="floor-title">餐饮美食</h4>
                         <div class="today-brands " style="right: 0px; top: 13px;">
-                           <span class="aspan"  v-if="publisheritem.uptypeName=='餐饮美食'" v-for="publisheritem in publisherlist"><a href="# ">{{publisheritem.pName}}</a>|</span>
+                            <span class="aspan" v-if="publisheritem.uptypeName=='餐饮美食'" v-for="publisheritem in publisherlist"><a href="# ">{{publisheritem.pName}}</a>|</span>
                         </div>
 
                     </div>
                 </div>
 
-                <div class="am-g am-g-fixed floodSix ">
+                <div class="am-g am-g-fixed floodSix" id="type1">
 
                     <li>
                         <div class="am-u-sm-4 am-u-md-5 am-u-lg-4 text-five">
@@ -421,18 +425,19 @@
                             <a href="# "><img src="../images/cake2.jpg" /></a>
                         </div>
                     </li>
-                    <div class="text-two big am-u-sm-4 am-u-md-5 am-u-lg-4 text-five">
-                        <div class="boxLi"></div>
-                        <div class="outer-con ">
-                            <div class="title" style="color: #333">【上海】 糕点</div>
-                            <div class="sub-title ">
-                                <span class="line-th-span" style="color: #333">¥60</span><br> <span class="new-price-span">¥40</span>
+                    <li>
+                        <div class="text-two big am-u-sm-4 am-u-md-5 am-u-lg-4 text-five">
+                            <div class="boxLi"></div>
+                            <div class="outer-con ">
+                                <div class="title" style="color: #333">【上海】 糕点</div>
+                                <div class="sub-title ">
+                                    <span class="line-th-span" style="color: #333">¥60</span><br> <span class="new-price-span">¥40</span>
+                                </div>
+
                             </div>
-
+                            <a href="# "><img src="../images/cake2.jpg" /></a>
                         </div>
-                        <a href="# "><img src="../images/cake2.jpg" /></a>
-                    </div>
-
+                    </li>
                     <li>
                         <div class="am-u-md-2 am-u-lg-2 text-three">
                             <div class="boxLi"></div>
@@ -503,13 +508,222 @@
                 <div class="clear "></div>
             </div>
             <div class="f2">
+                 <div class="am-container ">
+                    <div class="shopTitle ">
+                        <h4 class="floor-title">消费卡</h4>
+                        <div class="today-brands " style="right: 0px; top: 13px;">
+                            <span class="aspan" v-if="publisheritem.uptypeName=='消费卡'" v-for="publisheritem in publisherlist"><a href="# ">{{publisheritem.pName}}</a>|</span>
+                        </div>
 
+                    </div>
+                </div>
 
+                <div class="am-g am-g-fixed floodSix" id="type2">
+
+                    <li>
+                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-4 text-five">
+                            <div class="boxLi"></div>
+                            <div class="outer-con ">
+                                <div class="title ">【上海】 糕点</div>
+                                <div class="sub-title ">
+                                    <span class="line-th-span">¥60</span><br> <span class="new-price-span">¥40</span>
+                                </div>
+
+                            </div>
+                            <a href="# "><img src="../images/cake2.jpg" /></a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="text-two big am-u-sm-4 am-u-md-5 am-u-lg-4 text-five">
+                            <div class="boxLi"></div>
+                            <div class="outer-con ">
+                                <div class="title" style="color: #333">【上海】 糕点</div>
+                                <div class="sub-title ">
+                                    <span class="line-th-span" style="color: #333">¥60</span><br> <span class="new-price-span">¥40</span>
+                                </div>
+
+                            </div>
+                            <a href="# "><img src="../images/cake2.jpg" /></a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="am-u-md-2 am-u-lg-2 text-three">
+                            <div class="boxLi"></div>
+                            <div class="outer-con ">
+                                <div class="title ">【全国通用】冰淇淋券</div>
+                                <div class="sub-title ">
+                                    <span class="line-th-span">¥218</span><br> <span class="new-price-span">¥145</span>
+                                </div>
+
+                            </div>
+                            <a href="# "><img src="../images/hgdse.jpg" /></a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="am-u-md-2 am-u-lg-2 text-three sug">
+                            <div class="boxLi"></div>
+                            <div class="outer-con ">
+                                <div class="title ">【全国通用】 餐厅券</div>
+                                <div class="sub-title ">
+                                    <span class="line-th-span">¥59</span><br> <span class="new-price-span">¥40</span>
+                                </div>
+
+                            </div>
+                            <a href="# "><img src="../images/mixian.jpg" /></a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-4 text-five">
+                            <div class="boxLi"></div>
+                            <div class="outer-con ">
+                                <div class="title ">【全国通用】星巴克优惠券</div>
+                                <div class="sub-title ">
+                                    <span class="line-th-span">¥90</span><br> <span class="new-price-span">¥60</span>
+                                </div>
+
+                            </div>
+                            <a href="# "><img src="../images/xbk2.jpg" /></a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="am-u-sm-4 am-u-md-2 am-u-lg-2 text-six">
+                            <div class="boxLi"></div>
+                            <div class="outer-con ">
+                                <div class="title ">【全国通用】星巴克优惠券</div>
+                                <div class="sub-title ">
+                                    <span class="line-th-span">¥90</span><br> <span class="new-price-span">¥60</span>
+                                </div>
+
+                            </div>
+                            <a href="# "><img src="../images/xbk2.jpg" /></a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="am-u-sm-4 am-u-md-2 am-u-lg-4 text-six">
+                            <div class="boxLi"></div>
+                            <div class="outer-con ">
+                                <div class="title ">【全国通用】星巴克优惠券</div>
+                                <div class="sub-title ">
+                                    <span class="line-th-span">¥90</span><br> <span class="new-price-span">¥60</span>
+                                </div>
+
+                            </div>
+                            <a href="# "><img src="../images/xbk2.jpg" /></a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="clear "></div>
             </div>
 
             <div class="f3">
-                <!--甜点-->
+             
+                <div class="am-container ">
+                    <div class="shopTitle ">
+                        <h4 class="floor-title">购物提货券</h4>
+                        <div class="today-brands " style="right: 0px; top: 13px;">
+                            <span class="aspan" v-if="publisheritem.uptypeName=='购物提货券'" v-for="publisheritem in publisherlist"><a href="# ">{{publisheritem.pName}}</a>|</span>
+                        </div>
 
+                    </div>
+                </div>
+
+                <div class="am-g am-g-fixed floodSix" id="type3">
+
+                    <li>
+                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-4 text-five">
+                            <div class="boxLi"></div>
+                            <div class="outer-con ">
+                                <div class="title ">【上海】 糕点</div>
+                                <div class="sub-title ">
+                                    <span class="line-th-span">¥60</span><br> <span class="new-price-span">¥40</span>
+                                </div>
+
+                            </div>
+                            <a href="# "><img src="../images/cake2.jpg" /></a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="text-two big am-u-sm-4 am-u-md-5 am-u-lg-4 text-five">
+                            <div class="boxLi"></div>
+                            <div class="outer-con ">
+                                <div class="title" style="color: #333">【上海】 糕点</div>
+                                <div class="sub-title ">
+                                    <span class="line-th-span" style="color: #333">¥60</span><br> <span class="new-price-span">¥40</span>
+                                </div>
+
+                            </div>
+                            <a href="# "><img src="../images/cake2.jpg" /></a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="am-u-md-2 am-u-lg-2 text-three">
+                            <div class="boxLi"></div>
+                            <div class="outer-con ">
+                                <div class="title ">【全国通用】冰淇淋券</div>
+                                <div class="sub-title ">
+                                    <span class="line-th-span">¥218</span><br> <span class="new-price-span">¥145</span>
+                                </div>
+
+                            </div>
+                            <a href="# "><img src="../images/hgdse.jpg" /></a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="am-u-md-2 am-u-lg-2 text-three sug">
+                            <div class="boxLi"></div>
+                            <div class="outer-con ">
+                                <div class="title ">【全国通用】 餐厅券</div>
+                                <div class="sub-title ">
+                                    <span class="line-th-span">¥59</span><br> <span class="new-price-span">¥40</span>
+                                </div>
+
+                            </div>
+                            <a href="# "><img src="../images/mixian.jpg" /></a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-4 text-five">
+                            <div class="boxLi"></div>
+                            <div class="outer-con ">
+                                <div class="title ">【全国通用】星巴克优惠券</div>
+                                <div class="sub-title ">
+                                    <span class="line-th-span">¥90</span><br> <span class="new-price-span">¥60</span>
+                                </div>
+
+                            </div>
+                            <a href="# "><img src="../images/xbk2.jpg" /></a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="am-u-sm-4 am-u-md-2 am-u-lg-2 text-six">
+                            <div class="boxLi"></div>
+                            <div class="outer-con ">
+                                <div class="title ">【全国通用】星巴克优惠券</div>
+                                <div class="sub-title ">
+                                    <span class="line-th-span">¥90</span><br> <span class="new-price-span">¥60</span>
+                                </div>
+
+                            </div>
+                            <a href="# "><img src="../images/xbk2.jpg" /></a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="am-u-sm-4 am-u-md-2 am-u-lg-4 text-six">
+                            <div class="boxLi"></div>
+                            <div class="outer-con ">
+                                <div class="title ">【全国通用】星巴克优惠券</div>
+                                <div class="sub-title ">
+                                    <span class="line-th-span">¥90</span><br> <span class="new-price-span">¥60</span>
+                                </div>
+
+                            </div>
+                            <a href="# "><img src="../images/xbk2.jpg" /></a>
+                        </div>
+                    </li>
+                </div>
+
+                <div class="clear "></div>
             </div>
             <div class="f4">
 
@@ -686,16 +900,16 @@
                 data: {
                     userName: sessionStorage.getItem("userName"),
                     userId: sessionStorage.getItem("userId"),
-//                    cardlist: [],
+                    //                    cardlist: [],
                     uptypelist: [],
                     typelist: [],
                     publisherlist: []
                 },
                 created: function() {
                     //处理cardlist
-//                    var cardlisthandle = function(re) {
-//                        vm.cardlist = re;
-//                    }
+                    //                    var cardlisthandle = function(re) {
+                    //                        vm.cardlist = re;
+                    //                    }
                     //处理一级type
                     var uptypelisthandle = function(re) {
                         if (re.length > 0) {
@@ -719,11 +933,12 @@
                             return;
                         }
                     }
+
                     //发布商
 
                     //                    $(".hidden").removeClass("hidden");
                     PostGetJson("findallUptypelist.do", null, uptypelisthandle)
-//                    PostGetJson("getCard.do", null, cardlisthandle)
+                    //                    PostGetJson("getCard.do", null, cardlisthandle)
                     PostGetJson("findallTypelist.do", null, typelisthandle)
                     PostGetJson("findallPublisherlist.do", null, publisherlisthandle)
                     //                    var re = postajax("", "findallTypelist.do")
@@ -740,7 +955,8 @@
                     userId: sessionStorage.getItem("userId"),
                     cardlist: [],
                     publisherlist: [],
-                    message: "222"
+                    message: "222",
+                    sortlist: []
                 },
                 created: function() {
                     //处理cardlist
@@ -754,8 +970,33 @@
                             return;
                         }
                     }
+                    //                var sortlsitthandle = function(re) {
+                    //                    vmc.cardlist.push(re)
+                    //                }
+                    //                var cc = function() {
+                    //                   var re = vmc.cardlist;
+                    //                    vmc.sortlsit = new Array(6);
+                    //                    for (var j = 0; j < 6; j++) {
+                    //                        var sortitem = [];
+                    //                        for (var i = 0; i < re.length; i++) {
+                    //                            if (re[i].c_type != null && re[i].c_type.uptypeId == j + 1) {
+                    //                                sortitem.push(re[i])
+                    //                            }
+                    //                        }
+                    //                        vmc.sortlsit[j] = sortitem;
+                    //                    }
+                    //                    console.log(vm.sortlsit);
+                    //                }
+                    //                for (var j = 0; j < 6; j++) {
+                    //                    PostGetJson("getByupType.do", j + 1, sortlsitthandle)
+                    //                    if(j==5){
+                    //                        cc();
+                    //                    }
+                    //                }
+
                     PostGetJson("getCard.do", null, cardlisthandle)
                     PostGetJson("findallPublisherlist.do", null, publisherlisthandle)
+
                 },
                 mounted: function() {}
             })
@@ -785,8 +1026,35 @@
     </script>
     <!--导航 -->
     <script type="text/javascript">
-        (function() {
-            $('.am-slider').flexslider();
+        $(function() {
+            //            $('.am-slider').flexslider();
+            var index;
+            var sortlsitthandle = function(re) {
+                if (re.length > 0) {
+                    console.log(re)
+                    if (re.length > 7) {
+                        var mi = 8
+                    } else {
+                        mi = re.length;
+                    }
+                    var index = re[0].c_type.uptypeId;
+                    for (var i = 0; i < mi; i++) {
+                        $("#type" + index + " li:nth-child(" + i + ") .title").html("【" + re[i].adress + "】 " + re[i].cardname);
+                        $("#type" + index + " li:nth-child(" + i + ") .line-th-span").html("￥" + re[i].originalPrice);
+                        $("#type" + index + " li:nth-child(" + i + ") .new-price-span").html("￥" + re[i].currentPrice);
+                        if(re[i].url!=null&&re[i].url!=""){
+                            $("#type" + index + " li:nth-child(" + i + ") img").attr("src", "http://localhost:8080/upload/" + re[i].url)
+                        }
+                        
+                        $("#type" + index + " li:nth-child(" + i + ") a").attr("href", "introduction.html?" + re[i].cId)
+                    }
+                }
+            }
+
+            for (var j = 0; j < 6; j++) {
+                PostGetJson("getByupType.do", j + 1, sortlsitthandle)
+            }
+
         });
         $(document)
             .ready(

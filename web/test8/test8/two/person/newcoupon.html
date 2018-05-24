@@ -16,6 +16,10 @@
     <script src="../AmazeUI-2.4.2/assets/js/amazeui.js"></script>
 </head>
 <style>
+    .hidden {
+        display: none;
+    }
+
     li.person img {
         position: relative;
         right: 7px;
@@ -65,34 +69,6 @@
         z-index: 1000;
     }
 
-    /*top*/
-
-    .tip-top:before {
-        bottom: 100%;
-        left: 50%;
-        border-top-color: #F5F8FA;
-        /*小三角效果*/
-        margin-left: -3px;
-        margin-bottom: -12px;
-        left: 10px;
-        top: -8px;
-        pointer-events: none;
-    }
-
-    .tip-top:after {
-        bottom: 100%;
-        left: 50%;
-        margin-left: -6px;
-    }
-
-    .tip-top:hover:before {
-        margin-bottom: -6px;
-    }
-
-    .tip-top:hover:after {
-        margin-bottom: 6px;
-    }
-
     /*bottom*/
 
     .tip-bottom:before {
@@ -121,54 +97,22 @@
         }
 */
 
-    /*right*/
-
-    .tip-right:before {
-        top: 50%;
-        left: 100%;
-        border-right-color: rgba(0, 0, 0, 0.8);
-        margin-left: -9px;
-        margin-top: -3px;
+    .upfile {
+        position: relative;
+        bottom: 25px;
+        padding: 7px;
     }
 
-    .tip-right:after {
-        top: 50%;
-        left: 100%;
-        margin-left: 3px;
-        margin-top: -6px;
+    .hiddenfile {
+        position: relative;
+        top: 5px;
     }
 
-    .tip-right:hover:before {
-        margin-left: -3px;
-    }
-
-    .tip-right:hover:after {
-        margin-left: 9px;
-    }
-
-    /*left*/
-
-    .tip-left:before {
-        top: 50%;
-        left: 0%;
-        border-left-color: rgba(0, 0, 0, 0.8);
-        margin-left: 0px;
-        margin-top: -3px;
-    }
-
-    .tip-left:after {
-        top: 50%;
-        right: 100%;
-        margin-right: 0px;
-        margin-top: -6px;
-    }
-
-    .tip-left:hover:before {
-        margin-left: -6px;
-    }
-
-    .tip-left:hover:after {
-        margin-right: 6px;
+    .urlimg {
+        height: 100%;
+        position: absolute;
+        left: 50%;
+        height: 100px;
     }
 
 </style>
@@ -193,97 +137,107 @@
                 </div>
 
                 <div class="am-form-group">
-                    <label class="am-form-label">使用地</label>
+                    <label class="am-form-label" for="user-address">使用地</label>
                     <div class="am-form-content address">
-                        <select data-am-selected>
-                        <option value="a">浙江省</option>
-                        <option value="b" selected>江西省</option>
-                        </select>
-                        <select data-am-selected>
-                        <option value="a">温州市</option>
-                        <option value="b" selected>南昌市</option>
-                        </select>
-                        <select data-am-selected>
-                        <option value="a">瑞安区</option>
-                        <option value="b" selected>青山湖区</option>
-                        </select>
+                        <select id="province" style="width: 300px;display: inline-block" v-model="card.adress_p" @change="checkadress"></select>
+                        <select id="city" style="width: 300px;display: inline-block;float: right" v-model="card.adress_c" v-bind:disabled="card.adress_p=='全国通用'"></select>
+                        <div class="tip tip-bottom" style="display: block" v-bind:data-tip="message.masadress" v-show="message.masadress!=''"></div>
                     </div>
 
-                </div>
-
-
-                <div class="am-form-group">
-                    <label for="effectiveTime" class="am-form-label">生效日期</label>
-                    <div class="am-form-content">
-                        <input id="effectiveTime" placeholder="生效日期" type="text">
-                    </div>
                 </div>
                 <div class="am-form-group">
-                    <label for="InvalidTime" class="am-form-label">失效日期</label>
-                    <div class="am-form-content">
-                        <input id="InvalidTime" placeholder="失效日期" type="text">
+                    <label class="am-form-label">类别</label>
+                    <div class="am-form-content address">
+                        <select id="uptype" style="width: 300px;display: inline-block"></select>
+                        <select id="c_type" style="width: 300px;display: inline-block;float: right"></select>
+                        <!--                        <div class="tip tip-bottom" style="display: block"></div>-->
                     </div>
-                </div>
 
-                <div class="am-form-group">
-                    <label for="currentPrice" class="am-form-label">现价</label>
-                    <div class="am-form-content">
-                        <input id="currentPrice" placeholder="现价" type="text">
-
-                    </div>
                 </div>
                 <div class="am-form-group">
-                    <label for="user-email" class="am-form-label">邮件</label>
-                    <div class="am-form-content">
-                        <input id="user-email" placeholder="邮件" type="email">
-
+                    <label class="am-form-label">发布商</label>
+                    <div class="am-form-content address">
+                        <select id="publisher"></select>
                     </div>
-                </div>
-                <div class="am-form-group safety">
-                    <label for="user-safety" class="am-form-label">账号安全</label>
-                    <div class="am-form-content safety">
-                        <a href="safety.html">
 
-											<span class="am-icon-angle-right"></span>
-
-										</a>
-
+                    <div class="am-form-group">
+                        <label for="effectiveTime" class="am-form-label">生效日期</label>
+                        <div class="am-form-content">
+                            <input id="effectiveTime" placeholder="生效日期" type="text" @change="sss">
+                        </div>
                     </div>
-                </div>
-                <div class="info-btn">
-                    <div class="am-btn am-btn-danger">保存修改</div>
-                </div>
+                    <div class="am-form-group">
+                        <label for="invalidTime" class="am-form-label">失效日期</label>
+                        <div class="am-form-content">
+                            <input id="invalidTime" placeholder="失效日期" type="text">
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="currentPrice" class="am-form-label">现价</label>
+                        <div class="am-form-content">
+                            <input id="currentPrice" placeholder="现价" type="text" v-model="card.currentPrice">
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label for="originalPrice" class="am-form-label">原价/面值</label>
+                        <div class="am-form-content">
+                            <input id="originalPrice" placeholder="原价/面值" type="text" @change="checkoriginalPrice" v-model="card.originalPrice">
+
+                        </div>
+                    </div>
+                    <div class="am-form-group">
+                        <label for="imgurl" class="am-form-label">选择图片</label>
+                        <div class="am-form-content">
+                            <img id="image" src="" class="urlimg" />
+                            <input type="file" onchange="selectImage(this);" id="imgurl" class="hiddenfile" />
+                            <input type="button" onclick="uploadImage();" value="提交" style="display: none" id="saveattachment" />
+                            <div class="am-btn am-btn-danger upfile" onclick="cc()">选择文件</div>
+                            <div style="display: none" id="reurl"></div>
+                        </div>
+                    </div>
+                    <div class="info-btn">
+                        <div class="am-btn am-btn-danger" v-on:click="save">保存修改</div>
+                    </div>
             </form>
+            </div>
         </div>
-    </div>
 </body>
-<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<!--<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>-->
 <script type="text/javascript" src="../../js/json-driver.js"></script>
 <script type="text/javascript" src="../../js/vue.js"></script>
 <script type="text/javascript" src="../../js/pikaday.js"></script>
+<script type="text/javascript" src="../../js/city.js"></script>
 <script>
     $(function() {
+        var imgurl = "";
         var vm = new Vue({
             el: '#app_nc',
             data: {
                 userName: sessionStorage.getItem("userName"),
                 userId: sessionStorage.getItem("userId"),
                 card: {
-                    cId: null,
                     typeId: 1,
                     uId: 1,
                     pId: 1,
                     effectiveTime: "",
-                    InvalidTime: "",
+                    invalidTime: "",
                     currentPrice: "",
                     originalPrice: "",
                     cardname: "",
+                    url: "",
+                    adress_p: "",
+                    adress_c: "",
                 },
                 message: {
-                    masname: ""
+                    masname: "",
+                    masadress: "",
                 }
             },
             methods: {
+                sss: function() {
+                    //                    alert(this.card.effectiveTime)
+                },
                 checkname: function() {
                     if (this.card.cardname == "") {
                         this.message.masname = "卡券名不能为空";
@@ -291,6 +245,49 @@
                         this.masname = "";
                     }
                 },
+                checkadress: function() {
+                    if (this.card.adress_p == "") {
+                        this.message.masadress = "使用地不能为空";
+                    } else {
+                        this.masadress = "";
+                    }
+                },
+                checkeffective: function() {
+                    if (this.card.effectiveTime == "") {
+                        this.message.maseffectiveTime = "生效日期不能为空";
+                    } else {
+                        this.message.maseffectiveTime = "";
+                    }
+                },
+                checkoriginalPrice: function() {
+                    var patrn = /^\d+(\.\d+)?$/;
+                    if (this.card.originalPrice == "" || !patrn.exec(this.card.originalPrice)) {
+                        this.message.masoriginalPrice = "填写正确的数字";
+                    } else {
+                        this.message.masoriginalPrice = "";
+                    }
+                },
+                save: function() {
+                    if ($(".hiddenfile").val() != "") {
+                        $("#saveattachment").click();
+//                        alert($("#reurl").html());
+                    }
+
+                    vm.card.url = $("#reurl").html();
+                    vm.card.effectiveTime = $("#effectiveTime").val();
+                    vm.card.invalidTime = $("#invalidTime").val();
+                    vm.card.adress = $("#province").val() + "-" + $("#city").val();
+                    vm.card.pId = parseInt($("#publisher option:selected").val());
+                    vm.card.typeId = parseInt($("#c_type option:selected").val());
+                    delete vm.card.adress_c;
+                    delete vm.card.adress_p;
+                    PostGetJson("addCard.do", this.card, this.sucnewcard);
+                },
+                sucnewcard: function() {
+                    alert("新增卡券成功！");
+                    sessionStorage.setItem("newcardid",$("#reurl").html());
+                    location.href="../home/introduction.html";
+                }
             },
             created: function() {
                 $(".hidden").removeClass("hidden");
@@ -306,13 +303,126 @@
             yearRange: [2000, 2020]
         });
         var picker = new Pikaday({
-            field: document.getElementById('InvalidTime'),
+            field: document.getElementById('invalidTime'),
             firstDay: 1,
             minDate: new Date('2010-01-01'),
             maxDate: new Date('2020-12-31'),
             yearRange: [2000, 2020]
         });
     })
+    $(function() {
+        var pHtmlStr = '';
+        for (var name in pc) {
+            pHtmlStr = pHtmlStr + '<option>' + name + '</option>';
+        }
+        $("#province").html(pHtmlStr);
+        $("#province").change(function() {
+            var pname = $("#province option:selected").text();
+            var pHtmlStr = '';
+            var cityList = pc[pname];
+            for (var index in cityList) {
+                pHtmlStr = pHtmlStr + '<option>' + cityList[index] + '</option>';
+            }
+            $("#city").html(pHtmlStr);
+        });
+        $("#province").change();
+        var uptypeStr = function(re) {
+            if (re.length > 0) {
+                var pHtmlStr;
+                for (var i = 0; i < re.length; i++) {
+                    pHtmlStr = pHtmlStr + '<option value=' + re[i].uptypeId + '>' + re[i].uptypeName + '</option>';
+                }
+                $("#uptype").html(pHtmlStr);
+            }
+
+        }
+        var typeStr = function(re) {
+            if (re.length > 0) {
+                var pHtmlStr;
+                for (var i = 0; i < re.length; i++) {
+                    pHtmlStr = pHtmlStr + '<option value=' + re[i].typeId + '>' + re[i].typeName + '</option>';
+                }
+                $("#c_type").html(pHtmlStr);
+            }
+        }
+        var publisherStr = function(re) {
+            if (re.length > 0) {
+                var pHtmlStr;
+                for (var i = 0; i < re.length; i++) {
+                    pHtmlStr = pHtmlStr + '<option value=' + re[i].pId + '>' + re[i].pName + '</option>';
+                }
+                $("#publisher").html(pHtmlStr);
+            }
+        }
+        $("#uptype").change(function() {
+            var cId = $("#uptype option:selected").val();
+            PostGetJson("findTypeByupId.do", parseInt(cId), typeStr);
+            PostGetJson("findPublisherByupId.do", parseInt(cId), publisherStr);
+        })
+        $("#c_type").change(function() {
+
+        })
+
+        PostGetJson("findPublisherByupId.do", 1, publisherStr);
+        PostGetJson("findTypeByupId.do", 1, typeStr);
+        PostGetJson("findallUptypelist.do", this.card, uptypeStr);
+
+    })
+
+    function cc() {
+        $(".hiddenfile").click();
+    }
+    var image = '';
+
+    function selectImage(file) {
+        if (!file.files || !file.files[0]) {
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+            document.getElementById('image').src = evt.target.result;
+            image = evt.target.result;
+        }
+        reader.readAsDataURL(file.files[0]);
+    }
+
+    function uploadImage() {
+        image = JSON.stringify(image)
+        $.ajax({
+
+            type: 'POST',
+
+            url: curl + 'addAttachmentbase64.do',
+
+            data: {
+                base64: image
+            },
+
+            async: false,
+
+            dataType: 'json',
+
+            success: function(data) {
+                if (data.success) {
+                    $("#reurl").html(data.imgurl);
+
+                } else {
+
+                    alert('上传图片失败');
+
+                }
+
+            },
+
+            error: function(err) {
+
+                alert('网络故障');
+
+            }
+
+        });
+
+    }
 
 </script>
 

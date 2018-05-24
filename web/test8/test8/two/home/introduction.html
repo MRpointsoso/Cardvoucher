@@ -59,274 +59,271 @@
 */
     }
 
+    .message-r li {
+        float: left;
+    }
+
 </style>
 
 <body>
 
 
     <!--顶部导航条 -->
-    <div class="am-container header">
-        <ul class="message-l">
-            <div class="topMessage">
-                欢迎！ <a href="" style="color: #F54400">用户1</a>
-            </div>
-        </ul>
-        <ul class="message-r">
-            <div class="topMessage home">
-                <div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
-            </div>
-            <div class="topMessage my-shangcheng">
-                <div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
-            </div>
-            <div class="topMessage mini-cart">
-                <div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
-            </div>
-            <div class="topMessage favorite">
-                <div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
-        </ul>
+    <div class="hmtop" id="app1">
+        <!--顶部导航条 -->
+        <div class="am-container header">
+            <ul class="message-l">
+                <div class="topMessage hidden" v-show="userId!=null">
+                    <div class="menu-hd">
+                        欢迎！ <a href="../person/information.html" style="color: #F54400">{{userName}}</a>
+                    </div>
+                </div>
+                <div class="topMessage hidden" v-show="userId==null">
+                    <div class="menu-hd">
+                        欢迎！请 <a href="../home/login.html" style="color: #F54400">登录</a>
+                    </div>
+                </div>
+            </ul>
+            <ul class="message-r">
+                <li class="topMessage home">
+                    <div class="menu-hd">
+                        <a href="home2.html" target="_top" class="h">商城首页</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="topMessage my-shangcheng">
+                        <div class="menu-hd MyShangcheng"><a href="../person/information.html" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="topMessage favorite">
+                        <div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
+                    </div>
+                </li>
+            </ul>
         </div>
+    </div>
 
-        <!--悬浮搜索框-->
+    <!--悬浮搜索框-->
 
-        <div class="nav white">
-            <div class="logo"><img src="../images/logo.png" /></div>
-            <!--
+    <div class="nav white">
+        <div class="logo"><img src="../images/logo.png" /></div>
+        <!--
             <div class="logoBig">
                 <li><img src="../images/logobig.png" /></li>
             </div>
 -->
-            <div class="search-bar pr">
-                <a name="index_none_header_sysc" href="#"></a>
-                <form>
-                    <input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
-                    <input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
-                </form>
+        <div class="search-bar pr">
+            <a name="index_none_header_sysc" href="#"></a>
+            <form>
+                <input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
+                <input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
+            </form>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+    <b class="line"></b>
+    <div class="listMain">
+
+        <!--分类-->
+        <div class="nav-table">
+            <div class="long-title"><span class="all-goods">餐饮美食</span></div>
+            <div class="nav-cont">
+                <ul>
+                    <li class="index"><a href="home2.html">首页</a></li>
+
+                </ul>
+                <div class="nav-extra">
+                    <i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>转手卡券
+                    <i class="am-icon-angle-right" style="padding-left: 10px;"></i>
+                </div>
             </div>
         </div>
+        <ol class="am-breadcrumb am-breadcrumb-slash">
 
-        <div class="clear"></div>
-        <b class="line"></b>
-        <div class="listMain">
-
-            <!--分类-->
-            <div class="nav-table">
-                <div class="long-title"><span class="all-goods">餐饮美食</span></div>
-                <div class="nav-cont">
-                    <ul>
-                        <li class="index"><a href="home2.html">首页</a></li>
-
-                    </ul>
-                    <div class="nav-extra">
-                        <i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>转手卡券
-                        <i class="am-icon-angle-right" style="padding-left: 10px;"></i>
-                    </div>
-                </div>
-            </div>
-            <ol class="am-breadcrumb am-breadcrumb-slash">
-                <li><a href="#">首页</a></li>
-                <li><a href="#">分类</a></li>
-                <li class="am-active">内容</li>
-            </ol>
-            <script type="text/javascript">
-                $(function() {});
-                $(window).load(function() {
-                    $('.flexslider').flexslider({
-                        animation: "slide",
-                        start: function(slider) {
-                            $('body').removeClass('loading');
-                        }
-                    });
+        </ol>
+        <script type="text/javascript">
+            $(function() {});
+            $(window).load(function() {
+                $('.flexslider').flexslider({
+                    animation: "slide",
+                    start: function(slider) {
+                        $('body').removeClass('loading');
+                    }
                 });
+            });
 
-            </script>
-            <div class="scoll">
-                <section class="slider">
-                    <div class="flexslider">
-                        <ul class="slides">
-                            <li>
-                                <img src="../images/xbk2.jpg" title="pic" />
-                            </li>
-<!--
-                            <li>
-                               <img src="../images/xbk2.jpg" title="pic" />
-                            </li>
-                            <li>
-                              <img src="../images/xbk2.jpg" title="pic" />
-                            </li>
--->
-                        </ul>
-                    </div>
-                </section>
-            </div>
-
-            <!--放大镜-->
-
-            <div class="item-inform">
-                <div class="clearfixLeft" id="clearcontent">
-
-                    <div class="box">
-                        <script type="text/javascript">
-                            $(document).ready(function() {
-                                $(".jqzoom").imagezoom();
-                                $("#thumblist li a").click(function() {
-                                    $(this).parents("li").addClass("tb-selected").siblings().removeClass("tb-selected");
-                                    $(".jqzoom").attr('src', $(this).find("img").attr("mid"));
-                                    $(".jqzoom").attr('rel', $(this).find("img").attr("big"));
-                                });
-                            });
-
-                        </script>
-
-                        <div class="tb-booth tb-pic tb-s310">
-                            <a href="../images/xbk2.jpg"><img src="../images/xbk2.jpg" alt="细节展示放大镜特效" rel="../images/xbk2.jpg" class="jqzoom" /></a>
-                        </div>
-                        <ul class="tb-thumb" id="thumblist">
-                            <li class="tb-selected">
-                                <div class="tb-pic tb-s40">
-                                    <a href="#"><img src="../images/xbk2.jpg" mid="../images/xbk2.jpg" big="../images/xbk2.jpg"></a>
-                                </div>
-                            </li>
-<!--
-                            <li>
-                                <div class="tb-pic tb-s40">
-                                    <a href="#"><img src="../images/xbk2.jpg" mid="../images/xbk2.jpg" big="../images/xbk2.jpg"></a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="tb-pic tb-s40">
-                                    <a href="#"><img src="../images/xbk2.jpg" mid="../images/xbk2.jpg" big="../images/xbk2.jpg"></a>
-                                </div>
--->
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="clear"></div>
-                </div>
-
-                <div class="clearfixRight">
-
-                    <!--规格属性-->
-                    <!--名称-->
-                    <div class="tb-detail-hd">
-                        <h1>
-                            【全国通用】星巴克优惠
-                        </h1>
-                    </div>
-                    <div class="tb-detail-list">
-                        <div class="ibar_login_box ibar_login_box-in status_login ">
-                            <div class="avatar_box ">
-                                <!--                                <p class="avatar_imgbox "><img src="../images/no-img_mid_.jpg " /></p>-->
-                                <ul class="user_info" style="padding-top: 0px;width: 300px">
-                                    <li>卖家：<span class="saleman">用户2</span></li>
-                                    <li>级&nbsp;别：普通会员</li>
-                                    <li>地&nbsp;点：全国通用</li>
-                                    <li>有效期：<span style="color: #FB4A48;margin: 0 5px">2018年3月5号</span>至<span style="color: #FB4A48;margin: 0 5px">2018年5月12号</span></li>
-                                </ul>
-                            </div>
-                            <div class="login_btnbox" style="margin-top:20px;width: 300px">
-                                <span style="letter-spacing: 2px">卖家共卖出过<span class="saleman">1</span>张卡券</span><br>
-                                <span style="letter-spacing: 2px">注册时间: &nbsp;2018-03-01</span>
-                            </div>
-                            <i class="icon_arrow_white "></i>
-                        </div>
-                        <!--价格-->
-                        <div class="tb-detail-price" style="padding-top: 20px">
-                            <li class="price iteminfo_price">
-                                <dt>现价</dt>
-                                <dd><em>¥</em><b class="sys_item_price">60</b> </dd>
-                            </li>
-                            <li class="price iteminfo_mktprice">
-                                <dt>原价</dt>
-                                <dd><em>¥</em><b class="sys_item_mktprice">90</b></dd>
-                            </li>
-                            <div class="clear"></div>
-                        </div>
-
-                        <div class="clear"></div>
-
-                    </div>
-
-                    <div class="pay">
-                        <div class="pay-opt">
-                            <a href="home.html"><span class="am-icon-home am-icon-fw">首页</span></a>
-                            <a><span class="am-icon-heart am-icon-fw">收藏</span></a>
-
-                        </div>
-                        
+        </script>
+        <div class="scoll">
+            <section class="slider">
+                <div class="flexslider">
+                    <ul class="slides">
                         <li>
-                            <div class="clearfix tb-btn tb-btn-buy theme-login">
-                                <a id="LikBuy" title="立即购买" href="#">立即购买</a>
-                            </div>
+                            <img src="../images/xbk2.jpg" title="pic" class="urlimg" />
                         </li>
-                        <li onclick="showsend()">
-                            <div class="clearfix tb-btn tb-btn-basket theme-login">
-                                <a id="LikBasket" title="联系卖家" href="#"><i></i>联系卖家</a>
-                            </div>
-                        </li>
-                          <li>
-                            <div class="clearfix tb-btn tb-btn-buy theme-login">
-                                <a id="LikBuy" title="收藏" href="#">收藏</a>
-                            </div>
-                        </li>
-                    </div>
+                    </ul>
+                </div>
+            </section>
+        </div>
 
+        <!--放大镜-->
+
+        <div class="item-inform">
+            <div class="clearfixLeft" id="clearcontent">
+
+                <div class="box">
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            $(".jqzoom").imagezoom();
+                            $("#thumblist li a").click(function() {
+                                $(this).parents("li").addClass("tb-selected").siblings().removeClass("tb-selected");
+                                $(".jqzoom").attr('src', $(this).find("img").attr("mid"));
+                                $(".jqzoom").attr('rel', $(this).find("img").attr("big"));
+                            });
+                        });
+
+                    </script>
+
+                    <div class="tb-booth tb-pic tb-s310">
+                        <a href="../images/xbk2.jpg"><img src="../images/xbk2.jpg" alt="细节展示放大镜特效" rel="../images/xbk2.jpg" class="jqzoom urlimg urlrel" /></a>
+                    </div>
+                    <ul class="tb-thumb" id="thumblist">
+                        <li class="tb-selected">
+                            <div class="tb-pic tb-s40">
+                                <a href="#"><img src="../images/xbk2.jpg" mid="../images/xbk2.jpg" big="../images/xbk2.jpg" class="urlimg"></a>
+                            </div>
+                        </li>
+                        </li>
+                    </ul>
                 </div>
 
                 <div class="clear"></div>
+            </div>
+
+            <div class="clearfixRight" id="infocon">
+
+                <!--规格属性-->
+                <!--名称-->
+                <div class="tb-detail-hd">
+                    <h1>
+                        【全国通用】星巴克优惠
+                    </h1>
+                </div>
+                <div class="tb-detail-list">
+                    <div class="ibar_login_box ibar_login_box-in status_login ">
+                        <div class="avatar_box ">
+                            <!--                                <p class="avatar_imgbox "><img src="../images/no-img_mid_.jpg " /></p>-->
+                            <ul class="user_info" style="padding-top: 0px;width: 300px">
+                                <li>卖家：<span class="saleman">用户2</span></li>
+                                <li>级&nbsp;别：普通会员</li>
+                                <li>地&nbsp;点：<span class="adspanf">全国通用</span></li>
+                                <li>有效期：<span style="color: #FB4A48;margin: 0 5px" class="etime">2018年3月5号</span>至<span style="color: #FB4A48;margin: 0 5px" class="itime">2018年5月12号</span></li>
+                            </ul>
+                        </div>
+                        <div class="login_btnbox" style="margin-top:20px;width: 300px">
+                            <span style="letter-spacing: 2px">卖家共卖出过<span class="saleman">1</span>张卡券</span><br>
+                            <span style="letter-spacing: 2px" class="retime">注册时间: &nbsp;2018-03-01</span>
+                        </div>
+                        <i class="icon_arrow_white "></i>
+                    </div>
+                    <!--价格-->
+                    <div class="tb-detail-price" style="padding-top: 20px">
+                        <li class="price iteminfo_price">
+                            <dt>现价</dt>
+                            <dd><em>¥</em><b class="sys_item_price">60</b> </dd>
+                        </li>
+                        <li class="price iteminfo_mktprice">
+                            <dt>原价</dt>
+                            <dd><em>¥</em><b class="sys_item_mktprice">90</b></dd>
+                        </li>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="clear"></div>
+
+                </div>
+
+                <div class="pay">
+                    <div class="pay-opt">
+                        <a href="home.html"><span class="am-icon-home am-icon-fw">首页</span></a>
+                        <a><span class="am-icon-heart am-icon-fw">收藏</span></a>
+
+                    </div>
+
+                    <li>
+                        <div class="clearfix tb-btn tb-btn-buy theme-login">
+                            <a id="LikBuy" title="立即购买" href="pay.html">立即购买</a>
+                        </div>
+                    </li>
+                    <li onclick="showsend()">
+                        <div class="clearfix tb-btn tb-btn-basket theme-login">
+                            <a id="LikBasket" title="联系卖家" href="#"><i></i>联系卖家</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="clearfix tb-btn tb-btn-buy theme-login">
+                            <a id="LikBuy" title="收藏" href="#">收藏</a>
+                        </div>
+                    </li>
+                </div>
 
             </div>
 
+            <div class="clear"></div>
 
         </div>
 
-        <!--评价 -->
-        <!--菜单 -->
-        <div class=tip>
-            <div id="sidebar">
-                <div id="wrap">
-                    <div id="prof" class="item ">
-                        <a href="# ">
+
+    </div>
+
+    <!--评价 -->
+    <!--菜单 -->
+    <div class=tip>
+        <div id="sidebar">
+            <div id="wrap">
+                <div id="prof" class="item ">
+                    <a href="# ">
 							<span class="setting "></span>
 						</a>
-                        <div class="ibar_login_box status_login ">
-                            <div class="avatar_box ">
-                                <p class="avatar_imgbox "><img src="../images/no-img_mid_.jpg " /></p>
-                                <ul class="user_info ">
-                                    <li>用户名：sl1903</li>
-                                    <li>级&nbsp;别：普通会员</li>
-                                </ul>
-                            </div>
-                            <div class="login_btnbox ">
-                                <a href="# " class="login_order ">我的订单</a>
-                                <a href="# " class="login_favorite ">我的收藏</a>
-                            </div>
-                            <i class="icon_arrow_white "></i>
+                    <div class="ibar_login_box status_login ">
+                        <div class="avatar_box ">
+                            <p class="avatar_imgbox "><img src="../images/no-img_mid_.jpg " /></p>
+                            <ul class="user_info ">
+                                <li>用户名：sl1903</li>
+                                <li>级&nbsp;别：普通会员</li>
+                            </ul>
                         </div>
-
+                        <div class="login_btnbox ">
+                            <a href="# " class="login_order ">我的订单</a>
+                            <a href="# " class="login_favorite ">我的收藏</a>
+                        </div>
+                        <i class="icon_arrow_white "></i>
                     </div>
 
-                    <div id="shopCart " class="item ">
-                        <a href="# ">
-                            <!--							<span class="message "></span>-->
-                        </a>
-                        <p>
-                            消息
-                        </p>
-                        <p class="cart_num ">0</p>
-                    </div>
+                </div>
 
-                    <div id="asset " class="item ">
-                        <a href="# ">
+                <div id="shopCart " class="item ">
+                    <a href="# ">
+                        <!--							<span class="message "></span>-->
+                    </a>
+                    <p>
+                        消息
+                    </p>
+                    <p class="cart_num ">0</p>
+                </div>
+
+                <div id="asset " class="item ">
+                    <a href="# ">
 							<span class="view "></span>
 						</a>
-                        <div class="mp_tooltip ">
-                            我的卡券
-                            <i class="icon_arrow_right_black "></i>
-                        </div>
+                    <div class="mp_tooltip ">
+                        我的卡券
+                        <i class="icon_arrow_right_black "></i>
                     </div>
+                </div>
 
-                    <!--
+                <!--
                 <div id="foot " class="item ">
                     <a href="# ">
 							<span class="zuji "></span>
@@ -338,17 +335,17 @@
                 </div>
 -->
 
-                    <div id="brand " class="item ">
-                        <a href="#">
+                <div id="brand " class="item ">
+                    <a href="#">
 							<span class="wdsc "><img src="../images/wdsc.png " /></span>
 						</a>
-                        <div class="mp_tooltip ">
-                            我的收藏
-                            <i class="icon_arrow_right_black "></i>
-                        </div>
+                    <div class="mp_tooltip ">
+                        我的收藏
+                        <i class="icon_arrow_right_black "></i>
                     </div>
+                </div>
 
-                    <!--
+                <!--
                 <div id="broadcast " class="item ">
                     <a href="# ">
 							<span class="chongzhi "><img src="../images/chongzhi.png " /></span>
@@ -360,36 +357,36 @@
                 </div>
 -->
 
-                    <div class="quick_toggle ">
-                        <li class="qtitem ">
-                            <a href="# "><span class="kfzx "></span></a>
-                            <div class="mp_tooltip ">客服中心<i class="icon_arrow_right_black "></i></div>
-                        </li>
-                        <!--二维码 -->
-                        <li class="qtitem ">
-                            <a href="#none "><span class="mpbtn_qrcode "></span></a>
-                            <div class="mp_qrcode " style="display:none; "><img src="../images/weixin_code_145.png " /><i class="icon_arrow_white "></i></div>
-                        </li>
-                        <li class="qtitem ">
-                            <a href="#top " class="return_top "><span class="top "></span></a>
-                        </li>
-                    </div>
-
-                    <!--回到顶部 -->
-                    <div id="quick_links_pop " class="quick_links_pop hide "></div>
-
+                <div class="quick_toggle ">
+                    <li class="qtitem ">
+                        <a href="# "><span class="kfzx "></span></a>
+                        <div class="mp_tooltip ">客服中心<i class="icon_arrow_right_black "></i></div>
+                    </li>
+                    <!--二维码 -->
+                    <li class="qtitem ">
+                        <a href="#none "><span class="mpbtn_qrcode "></span></a>
+                        <div class="mp_qrcode " style="display:none; "><img src="../images/weixin_code_145.png " /><i class="icon_arrow_white "></i></div>
+                    </li>
+                    <li class="qtitem ">
+                        <a href="#top " class="return_top "><span class="top "></span></a>
+                    </li>
                 </div>
+
+                <!--回到顶部 -->
+                <div id="quick_links_pop " class="quick_links_pop hide "></div>
 
             </div>
-            <div id="prof-content " class="nav-content ">
-                <div class="nav-con-close ">
-                    <i class="am-icon-angle-right am-icon-fw "></i>
-                </div>
-                <div>
-                    我
-                </div>
+
+        </div>
+        <div id="prof-content " class="nav-content ">
+            <div class="nav-con-close ">
+                <i class="am-icon-angle-right am-icon-fw "></i>
             </div>
-            <!--
+            <div>
+                我
+            </div>
+        </div>
+        <!--
         <div id="shopCart-content " class="nav-content ">
             <div class="nav-con-close ">
                 <i class="am-icon-angle-right am-icon-fw "></i>
@@ -399,60 +396,107 @@
             </div>
         </div>
 -->
-            <div id="asset-content " class="nav-content ">
-                <div class="nav-con-close ">
-                    <i class="am-icon-angle-right am-icon-fw "></i>
-                </div>
-                <div>
-                    资产
-                </div>
+        <div id="asset-content " class="nav-content ">
+            <div class="nav-con-close ">
+                <i class="am-icon-angle-right am-icon-fw "></i>
+            </div>
+            <div>
+                资产
+            </div>
 
-                <div class="ia-head-list ">
-                    <a href="# " target="_blank " class="pl ">
-                        <div class="num ">0</div>
-                        <div class="text ">优惠券</div>
-                    </a>
-                    <a href="# " target="_blank " class="pl ">
-                        <div class="num ">0</div>
-                        <div class="text ">红包</div>
-                    </a>
-                    <a href="# " target="_blank " class="pl money ">
-                        <div class="num ">￥0</div>
-                        <div class="text ">余额</div>
-                    </a>
-                </div>
+            <div class="ia-head-list ">
+                <a href="# " target="_blank " class="pl ">
+                    <div class="num ">0</div>
+                    <div class="text ">优惠券</div>
+                </a>
+                <a href="# " target="_blank " class="pl ">
+                    <div class="num ">0</div>
+                    <div class="text ">红包</div>
+                </a>
+                <a href="# " target="_blank " class="pl money ">
+                    <div class="num ">￥0</div>
+                    <div class="text ">余额</div>
+                </a>
+            </div>
 
+        </div>
+        <div id="foot-content " class="nav-content ">
+            <div class="nav-con-close ">
+                <i class="am-icon-angle-right am-icon-fw "></i>
             </div>
-            <div id="foot-content " class="nav-content ">
-                <div class="nav-con-close ">
-                    <i class="am-icon-angle-right am-icon-fw "></i>
-                </div>
-                <div>
-                    足迹
-                </div>
-            </div>
-            <div id="brand-content " class="nav-content ">
-                <div class="nav-con-close ">
-                    <i class="am-icon-angle-right am-icon-fw "></i>
-                </div>
-                <div>
-                    收藏
-                </div>
-            </div>
-            <div id="broadcast-content " class="nav-content ">
-                <div class="nav-con-close ">
-                    <i class="am-icon-angle-right am-icon-fw "></i>
-                </div>
-                <div>
-                    充值
-                </div>
+            <div>
+                足迹
             </div>
         </div>
-        <div class="sendcon"></div>
+        <div id="brand-content " class="nav-content ">
+            <div class="nav-con-close ">
+                <i class="am-icon-angle-right am-icon-fw "></i>
+            </div>
+            <div>
+                收藏
+            </div>
+        </div>
+        <div id="broadcast-content " class="nav-content ">
+            <div class="nav-con-close ">
+                <i class="am-icon-angle-right am-icon-fw "></i>
+            </div>
+            <div>
+                充值
+            </div>
+        </div>
+    </div>
+    <div class="sendcon"></div>
 </body>
 
 </html>
+<script type="text/javascript" src="../../js/vue.js"></script>
+<script type="text/javascript" src="../../js/json-driver.js"></script>
+
 <script>
+    $(function() {
+        new Vue({
+            el: '#app1',
+            data: {
+                userName: sessionStorage.getItem("userName"),
+                userId: sessionStorage.getItem("userId"),
+            },
+            created: function() {
+                $(".hidden").removeClass("hidden");
+
+            },
+            mounted: function() {}
+        })
+        var card;
+        var user;
+        var userhandle = function(re) {
+            user = re[0];
+            $("#infocon .saleman").html(re[0].username);
+            $("#infocon .retime").html("注册日期：" + re[0].uRegistetime.substr(0, 10))
+        }
+        var datahandle = function(re) {
+            var card = re[0];
+            $("#infocon .tb-detail-hd h1").html("【" + re[0].adress + "】 " + re[0].cardname);
+            $("#infocon .adspanf").html(re[0].adress)
+            $("#infocon .etime").html(re[0].effectiveTime.substr(0, 10))
+            $("#infocon .itime").html(re[0].invalidTime.substr(0, 10))
+            $("#infocon .sys_item_price").html(re[0].currentPrice)
+            $("#infocon .sys_item_mktprice").html(re[0].originalPrice)
+            $(".urlimg").attr("src", "http://localhost:8080/upload/" + re[0].url)
+             $(".urlrel").attr("rel", "http://localhost:8080/upload/" + re[0].url)
+            $("#LikBuy").attr("href","pay.html?"+re[0].cId)
+            PostGetJson("findUserbyId.do", re[0].uId, userhandle)
+        }
+        var url = window.location.search;
+        console.log(url.split('?')[1])
+        var data = {
+            cId: parseInt(url.split('?')[1])
+        }
+        PostGetJson("getCardbyId.do", data, datahandle)
+        console.log(card);
+        console.log(user)
+
+    })
+
     function showsend() {
         $(".sendcon").load("test.html");
         $(".sendcon").on("click", "#talksub", function() {
